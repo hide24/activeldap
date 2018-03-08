@@ -284,6 +284,7 @@ module ActiveLdap
     include GetTextSupport
     public :gettext
     public :_
+    include ActiveModel::Conversion
 
     if Object.const_defined?(:Reloadable)
       if Reloadable.const_defined?(:Deprecated)
