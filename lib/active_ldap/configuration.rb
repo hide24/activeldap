@@ -27,6 +27,7 @@ module ActiveLdap
     DEFAULT_CONFIG[:host] = '127.0.0.1'
     DEFAULT_CONFIG[:port] = nil
     DEFAULT_CONFIG[:method] = :plain  # :ssl, :tls, :plain allowed
+    DEFAULT_CONFIG[:tls_options] = nil
 
     DEFAULT_CONFIG[:bind_dn] = nil
     DEFAULT_CONFIG[:password_block] = nil
@@ -91,8 +92,8 @@ module ActiveLdap
         @@defined_configurations
       end
 
-      def remove_configuration_by_configuration(config)
-        @@defined_configurations.delete_if {|key, value| value == config}
+      def remove_configuration_by_key(key)
+        @@defined_configurations.delete(key)
       end
 
       CONNECTION_CONFIGURATION_KEYS = [:uri, :base, :adapter]
