@@ -785,7 +785,11 @@ module ActiveLdap
     end
 
     def to_param
-      id
+      if caller_locations.map(&:label).include?('url_for')
+        id.gsub('.', '%2e')
+      else
+        id
+      end
     end
 
     # Returns this entity’s dn wrapped in an Array or nil if the entity' s dn is not set.
